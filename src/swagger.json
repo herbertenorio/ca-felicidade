@@ -1,0 +1,249 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "version": "1.0.0",
+        "title": "CA da Felicidade",
+        "description": "API - CA da Felicidade",
+        "contact": {
+            "name": "API CA Felicidade Support",
+            "email": "herbertenorio@hotmail.com"
+        }
+    },
+    "paths": {
+        "/user": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create user in the system",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "firstName": {
+                                        "description": "First name of the user",
+                                        "type": "string"
+                                    },
+                                    "lastName": {
+                                        "description": "Last name of the user",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Email of the user",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password of the user",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "firstName",
+                                    "lastName",
+                                    "email",
+                                    "password"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "User created in the system",
+                        "content": {
+                            "application/json": {}
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    },
+                    "500": {
+                        "description": "User already exist in the system"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "List user in system",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Id of the user",
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Users in system",
+                        "content": {
+                            "application/json": {}
+                        },
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Update user in the system",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Unique Identifier the user in the system",
+                                        "type": "string"
+                                    },
+                                    "firstName": {
+                                        "description": "First name of the user",
+                                        "type": "string"
+                                    },
+                                    "lastName": {
+                                        "description": "Last name of the user",
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "description": "Email of the user",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password of the user",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User updated in the system",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/user/authenticate": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Authenticate user in the system",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "description": "Email of the user",
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "description": "Password of the user",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "email",
+                                    "password"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "User authenticated in the system",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "required": [
+                "firstName",
+                "lastName",
+                "email",
+                "password"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "isAdmin": {
+                    "type": "boolean"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "lastName": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "Users": {
+        "type": "array",
+        "$ref": "#/definitions/User"
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "bearerFormat": "JWT"
+            }
+        }
+    }
+}
