@@ -23,7 +23,7 @@
 Usuários
 
   - [x] Cadastro
-  - [x] Authenticação
+  - [x] Autenticação
   - [x] Consulta
   - [x] Atualização
 
