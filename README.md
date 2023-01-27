@@ -62,10 +62,10 @@ $ git clone https://github.com/herbertenorio/ca-felicidade.git
 $ cd ca-felicidade
 
 # Instale as dependências
-$ npm install
+$ yarn install
 
 # Execute a aplicação em modo de desenvolvimento
-$ npm run dev
+$ yarn run dev
 
 # O servidor inciará na porta:3333 - acesse http://localhost:3333 
 
