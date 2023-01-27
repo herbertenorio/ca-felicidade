@@ -39,7 +39,7 @@ Comentários
 Regras
 
   - [x] Os usuários podem se cadastrar.
-  - [x] Os usuários podem alterar os dados depois de authenticado
+  - [x] Os usuários podem alterar os dados depois de autenticado
 
 ---
 
