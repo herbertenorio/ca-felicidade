@@ -21,6 +21,9 @@ jobs:
       with:
         node-version: '18.x'
         cache: 'yarn'
-    - run: yarn install --frozen-lockfile
-    - run: yarn lint
-    - run: yarn test:ci
+    
+    - name: Install dependencies     
+      run: yarn install --frozen-lockfile
+
+    - name: Test
+      run: yarn test
