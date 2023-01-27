@@ -24,3 +24,6 @@ jobs:
     
     - name: Install dependencies     
       run: yarn install --frozen-lockfile
+    
+    - name: Build Typescript to Javascript
+      run: yarn run tsc
