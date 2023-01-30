@@ -42,6 +42,4 @@ jobs:
             secure-environment-variables: DATABASE_URL=${{ secrets.DATABASE_URL }}
             name: aci-cafelicidade
             location: 'Central India'
-            cpu: 1
-            memory: 1gb
             ports: 3333
