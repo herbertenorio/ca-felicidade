@@ -27,4 +27,6 @@ jobs:
     
     - name: Build Typescript to Javascript
       run: yarn run tsc
+
+    - name: Executing tests
       run: yarn run test
