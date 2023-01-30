@@ -40,5 +40,5 @@ jobs:
             registry-username: ${{ secrets.REGISTRY_USERNAME }}
             registry-password: ${{ secrets.REGISTRY_PASSWORD }}
             name: aci-ca_felicidade
-		        environment-variables: DATABASE_URL=${{ secrets.DATABASE_URL }}
+	    environment-variables: DATABASE_URL=${{ secrets.DATABASE_URL }}
             location: 'Central India'
