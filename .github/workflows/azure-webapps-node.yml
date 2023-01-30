@@ -43,3 +43,5 @@ jobs:
             name: aci-cafelicidade
             location: 'Central India'
             ports: 3333
+            vnet: DevopsChallengeRG-vnet
+            subnet: Container-Groups
