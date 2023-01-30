@@ -34,7 +34,7 @@ jobs:
           uses: 'azure/aci-deploy@v1'
           with:
             resource-group: ${{ secrets.RESOURCE_GROUP }}
-            dns-name-label: ${{ secrets.RESOURCE_GROUP }}${{ github.run_number }}
+            dns-name-label: cafelicidade-${{ github.run_number }}
             image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/ca_felicidade:${{ github.sha }}
             registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             registry-username: ${{ secrets.REGISTRY_USERNAME }}
@@ -42,3 +42,6 @@ jobs:
             secure-environment-variables: DATABASE_URL=${{ secrets.DATABASE_URL }}
             name: aci-cafelicidade
             location: 'Central India'
+            cpu: 1
+            memory: 1gb
+            ports: 3333
