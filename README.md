@@ -83,6 +83,11 @@ DATABASE_URL_WITH_SCHEMA=${DATABASE_URL}?schema=public
 
 ```
 ---
+## Documentação 
+
+### API usando swagger disponível para teste online no link abaixo
+
+http://api-cafelicidade.centralindia.azurecontainer.io:3333/api-docs/
 
 ## 🛠 Tecnologias
 
