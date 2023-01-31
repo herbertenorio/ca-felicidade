@@ -19,7 +19,7 @@ export async function ensureAuthenticateUser(request: Request, response: Respons
 
         const { sub } = verify(token, "74b0328a08e7d9e213b1ea77ba32198d");
 
-        request.id_user = sub as string;
+        request.id_user_auth = sub as string;
 
         return next();
 

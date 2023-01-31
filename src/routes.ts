@@ -13,5 +13,7 @@ routes.post("/user/authenticate", authenticateUserController.handle)
 routes.post("/user/", userController.handle)
 routes.put("/user/", ensureAuthenticateUser, userController.handle)
 routes.get("/user/", userController.handle)
+routes.get("/user/:id", userController.handle)
+routes.delete("/user/:id", ensureAuthenticateUser, userController.handle)
 
 export { routes }

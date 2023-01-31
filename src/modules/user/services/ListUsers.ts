@@ -1,14 +1,5 @@
 import { PrismaClient } from "@prisma/client"
 
-interface IUser {
-    id: string
-    firstName: string
-    lastName: string
-    email: string
-    password: string
-    isAdmin: boolean
-}
-
 export class ListUsers {
 
     async listAll() {
@@ -28,13 +19,13 @@ export class ListUsers {
         return users;
     }
 
-    async listUserById(userData: IUser) {
+    async listUserById(id: string) {
 
         const prisma = new PrismaClient()
 
         const user = await prisma.user.findMany({
             where: {
-                id: userData.id
+                id: id
             },
             select: {
                 id: true,

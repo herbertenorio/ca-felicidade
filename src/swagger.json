@@ -69,29 +69,18 @@
                     "User"
                 ],
                 "summary": "List user in system",
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "id": {
-                                        "description": "Id of the user",
-                                        "type": "string"
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
                 "responses": {
                     "200": {
                         "description": "Users in system",
                         "content": {
-                            "application/json": {}
-                        },
-                        "schema": {
-                            "$ref": "#/definitions/User"
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/User"
+                                    }
+                                }
+                            }
                         }
                     }
                 }
@@ -156,6 +145,71 @@
                 }
             }
         },
+        "/user/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get user in the system by id",
+                "responses": {
+                    "200": {
+                        "description": "Users in the system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/User"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "delete user in the system by id",
+                "responses": {
+                    "200": {
+                        "description": "Return message deleted user in the system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Return Unauthorized message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "ID of user in the system",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    },
+                    "style": "simple"
+                }
+            ]
+        },
         "/user/authenticate": {
             "post": {
                 "tags": [
@@ -214,9 +268,6 @@
                 "id": {
                     "type": "string",
                     "uniqueItems": true
-                },
-                "isAdmin": {
-                    "type": "boolean"
                 },
                 "firstName": {
                     "type": "string"

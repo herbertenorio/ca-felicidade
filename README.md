@@ -64,6 +64,9 @@ $ cd ca-felicidade
 # Instale as dependências
 $ yarn install
 
+# Gerar prisma client
+$ yarn prisma generate
+
 # Execute a aplicação em modo de desenvolvimento
 $ yarn run dev
 
