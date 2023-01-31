@@ -5,6 +5,8 @@ name: tests
 
 on:
   push:
+    paths-ignore:
+        - README.md
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
