@@ -34,7 +34,7 @@ jobs:
           uses: 'azure/aci-deploy@v1'
           with:
             resource-group: ${{ secrets.RESOURCE_GROUP }}
-            dns-name-label: cafelicidade-${{ github.run_number }}
+            dns-name-label: api-cafelicidade
             image: ${{ secrets.REGISTRY_LOGIN_SERVER }}/ca_felicidade:${{ github.sha }}
             registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             registry-username: ${{ secrets.REGISTRY_USERNAME }}
