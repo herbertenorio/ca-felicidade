@@ -1,24 +1,21 @@
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "../../../InstanceDB"
 import { hash } from "bcrypt"
 
-interface ICreateUser {
+interface ICreateUserDTO {
     firstName: string
     lastName: string
     email: string
     password: string
-    isAdmin: boolean
 }
 
 export class CreateUser {
 
-    async execute(userData: ICreateUser) {
-
-        const prisma = new PrismaClient()
+    async execute(userData: ICreateUserDTO) {
 
         const userExist = await prisma.user.findFirst({
             where: {
                 email: {
-                    contains: userData.email,
+                    equals: userData.email,
                     mode: "insensitive"
                 }
             }

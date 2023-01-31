@@ -1,7 +1,7 @@
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "../../../InstanceDB"
 import { hash } from "bcrypt"
 
-interface IUser {
+interface IUpdateUserDTO {
     id: string
     firstName: string
     lastName: string
@@ -12,9 +12,7 @@ interface IUser {
 
 export class UpdateUser {
 
-    async execute(userData: IUser) {
-
-        const prisma = new PrismaClient()
+    async execute(userData: IUpdateUserDTO) {
 
         const userExist = await prisma.user.findFirst({
             where: {

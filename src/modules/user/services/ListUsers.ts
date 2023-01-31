@@ -1,10 +1,8 @@
-import { PrismaClient } from "@prisma/client"
+import { prisma } from "../../../InstanceDB"
 
 export class ListUsers {
 
     async listAll() {
-
-        const prisma = new PrismaClient()
 
         const users = await prisma.user.findMany({
             select: {
@@ -20,8 +18,6 @@ export class ListUsers {
     }
 
     async listUserById(id: string) {
-
-        const prisma = new PrismaClient()
 
         const user = await prisma.user.findMany({
             where: {

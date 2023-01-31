@@ -1,8 +1,8 @@
 import { prisma } from "../../../InstanceDB"
 
-export class DeleteUser {
+export class DeleteCategory {
 
-    async execute(idUserDelete: string, idUserAuth: string) {
+    async execute(idCategoryDelete: string, idUserAuth: string) {
 
         const userAuth = await prisma.user.findFirst({
             where: {
@@ -12,18 +12,18 @@ export class DeleteUser {
 
         if (userAuth?.isAdmin) {
 
-            const user = await prisma.user.delete({
+            const category = await prisma.category.delete({
                 where: {
-                    id: idUserDelete
+                    id: idCategoryDelete
                 }
             })
 
-            if (user) {
+            if (category) {
                 return {
-                    message: "User: " + user.firstName + ", with id: " + user.id + " deleted with success"
+                    message: "Category: " + category.name + ", with id: " + category.id + " deleted with success"
                 }
             } else {
-                throw new Error("User not exist in the system")
+                throw new Error("Category not exist in the system")
             }
 
         } else {

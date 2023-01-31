@@ -4,16 +4,22 @@ import { DeleteUser } from "../services/DeleteUser";
 import { ListUsers } from "../services/ListUsers";
 import { UpdateUser } from "../services/UpdateUser";
 
-
+interface ICreateUserDTO {
+    firstName: string
+    lastName: string
+    email: string
+    password: string
+}
 export class UserController {
 
     async handle(request: Request, response: Response) {
 
         let result
-
-        const userData = request.body
+        let userData
 
         if (request.method == 'POST') {
+
+            userData = request.body
 
             const createUser = new CreateUser();
             result = await createUser.execute(userData);
@@ -42,6 +48,8 @@ export class UserController {
         }
 
         if (request.method == 'PUT') {
+
+            userData = request.body
 
             const updateUser = new UpdateUser();
 
