@@ -1,6 +1,6 @@
 import { prisma } from "../../../InstanceDB"
 
-export class ListPost {
+export class ListPosts {
 
 
     async listAll() {

@@ -3,6 +3,7 @@ import { prisma } from "../../../InstanceDB"
 interface IUpdatePostDTO {
     id: string
     title: string
+    content: string
 }
 
 export class UpdatePost {
@@ -23,7 +24,8 @@ export class UpdatePost {
                     id: postData.id
                 },
                 data: {
-                    title: postData.title
+                    title: postData.title,
+                    content: postData.content,
                 }
             })
 

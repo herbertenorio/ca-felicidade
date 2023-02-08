@@ -32,9 +32,9 @@ export class CategoryController {
             const listCategory = new ListCategory();
 
             if (id) {
-                result = await listCategory.listCategoryById(id);
+                result = await listCategory.listCategoryById(id)
             } else {
-                result = await listCategory.listAll();
+                result = await listCategory.listAll()
             }
 
             response.status(200).json(result);

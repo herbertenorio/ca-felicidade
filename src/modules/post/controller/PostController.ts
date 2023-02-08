@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { CreatePost } from "../services/CreatePost";
 import { DeletePost } from "../services/DeletePost";
-import { ListPost } from "../services/ListPosts";
+import { ListPosts } from "../services/ListPosts";
 import { UpdatePost } from "../services/UpdatePost";
 
 export class PostController {
@@ -28,7 +28,7 @@ export class PostController {
         if (request.method == 'GET') {
 
             const id = request.params.id
-            const listPost = new ListPost();
+            const listPost = new ListPosts();
 
             if (id) {
                 result = await listPost.listPostById(id);

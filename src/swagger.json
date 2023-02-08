@@ -17,6 +17,7 @@
                 ],
                 "summary": "Create user in the system",
                 "requestBody": {
+                    "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
@@ -96,6 +97,7 @@
                 ],
                 "summary": "Update user in the system",
                 "requestBody": {
+                    "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
@@ -217,6 +219,7 @@
                 ],
                 "summary": "Authenticate user in the system",
                 "requestBody": {
+                    "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
@@ -260,8 +263,14 @@
                 "tags": [
                     "Category"
                 ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
                 "summary": "Create category in the system",
                 "requestBody": {
+                    "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
@@ -332,6 +341,7 @@
                 ],
                 "summary": "Update category in the system",
                 "requestBody": {
+                    "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
@@ -429,7 +439,222 @@
                 {
                     "name": "id",
                     "in": "path",
-                    "description": "ID of category in the system",
+                    "description": "Unique Identifierof category in the system",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    },
+                    "style": "simple"
+                }
+            ]
+        },
+        "/post": {
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Create post in the system",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "title": {
+                                        "description": "Title of the post",
+                                        "type": "string",
+                                        "required": true
+                                    },
+                                    "content": {
+                                        "description": "content of the post",
+                                        "type": "string"
+                                    },
+                                    "categoryIds": {
+                                        "description": "Category ids of the post",
+                                        "type": "array",
+                                        "example": [
+                                            "b6e861b9-9a7e-45c0-82d6-743d13ff6183",
+                                            "7c84b5fc-df7f-49b1-8b48-1f5446c2114b"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "title",
+                                    "content"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Post created in the system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "description": "Unique Identifier of the post",
+                                            "type": "string"
+                                        },
+                                        "title": {
+                                            "description": "Title of the post",
+                                            "type": "string"
+                                        },
+                                        "content": {
+                                            "description": "Content of the post",
+                                            "type": "string"
+                                        },
+                                        "createdAt": {
+                                            "description": "Date of the post",
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Post already exist in the system"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "List posts in the system",
+                "responses": {
+                    "200": {
+                        "description": "Posts in  the system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "$ref": "#/definitions/Post"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Post"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Update post in the system",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Unique Identifier the post in the system",
+                                        "type": "string"
+                                    },
+                                    "title": {
+                                        "description": "Title of the post",
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "description": "Content of the post",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Post updated in the system",
+                        "content": {
+                            "application/json": {}
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/post/{id}": {
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Get post in the system by id",
+                "responses": {
+                    "200": {
+                        "description": "Post in the system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Post"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Post"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Delete post in the system by id",
+                "responses": {
+                    "200": {
+                        "description": "Return message deleted post in the system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Return Unauthorized message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Unique Identifier of post in the system",
                     "required": true,
                     "schema": {
                         "type": "string"
@@ -483,15 +708,67 @@
                     "type": "string"
                 }
             }
+        },
+        "Post": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "title": {
+                    "type": "string"
+                },
+                "content": {
+                    "type": "string"
+                },
+                "PostCategory": {
+                    "type": "object",
+                    "$ref": "#/definitions/Categorys"
+                },
+                "Comments": {
+                    "type": "object",
+                    "$ref": "#/definitions/Comments"
+                }
+            }
+        },
+        "Comment": {
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "uniqueItems": true
+                },
+                "content": {
+                    "type": "string"
+                },
+                "createdAt": {
+                    "type": "string"
+                }
+            }
+        },
+        "Users": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/User"
+            }
+        },
+        "Categorys": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Category"
+            }
+        },
+        "Posts": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Post"
+            }
+        },
+        "Comments": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/Comment"
+            }
         }
-    },
-    "Users": {
-        "type": "array",
-        "$ref": "#/definitions/User"
-    },
-    "Categorys": {
-        "type": "array",
-        "$ref": "#/definitions/Category"
     },
     "components": {
         "securitySchemes": {

@@ -14,6 +14,7 @@ CREATE TABLE "user" (
 CREATE TABLE "category" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
 
     CONSTRAINT "category_pkey" PRIMARY KEY ("id")
 );
@@ -23,6 +24,7 @@ CREATE TABLE "post" (
     "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "title" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
     "published" BOOLEAN NOT NULL DEFAULT false,
     "authorId" TEXT NOT NULL,
 
@@ -32,6 +34,7 @@ CREATE TABLE "post" (
 -- CreateTable
 CREATE TABLE "posts_categories" (
     "id" TEXT NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "fk_id_post" TEXT NOT NULL,
     "fk_id_category" TEXT NOT NULL,
 
@@ -43,7 +46,7 @@ CREATE TABLE "comment" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
     "content" TEXT NOT NULL,
-    "postId" TEXT NOT NULL,
+    "fk_id_post" TEXT NOT NULL,
 
     CONSTRAINT "comment_pkey" PRIMARY KEY ("id")
 );
@@ -64,4 +67,4 @@ ALTER TABLE "posts_categories" ADD CONSTRAINT "posts_categories_fk_id_post_fkey"
 ALTER TABLE "posts_categories" ADD CONSTRAINT "posts_categories_fk_id_category_fkey" FOREIGN KEY ("fk_id_category") REFERENCES "category"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "comment" ADD CONSTRAINT "comment_postId_fkey" FOREIGN KEY ("postId") REFERENCES "post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "comment" ADD CONSTRAINT "comment_fk_id_post_fkey" FOREIGN KEY ("fk_id_post") REFERENCES "post"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
