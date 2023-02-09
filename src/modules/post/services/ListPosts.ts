@@ -16,7 +16,11 @@ export class ListPosts {
             }
         })
 
-        return post;
+        if (post) {
+            return post;
+        } else {
+            return { message: "Not found record" }
+        }
     }
 
     async listPostById(id: string) {
@@ -35,7 +39,11 @@ export class ListPosts {
             }
         })
 
-        return post;
+        if (post) {
+            return post;
+        } else {
+            return { message: "Not found record" }
+        }
     }
 
 }

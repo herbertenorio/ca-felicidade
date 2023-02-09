@@ -4,6 +4,16 @@ export class DeleteCategory {
 
     async execute(idCategoryDelete: string, idUserAuth: string) {
 
+        const categoryExist = await prisma.category.findUnique({
+            where: {
+                id: idCategoryDelete
+            }
+        })
+
+        if (!categoryExist) {
+            throw new Error("Category not found")
+        }
+
         const userAuth = await prisma.user.findFirst({
             where: {
                 id: idUserAuth

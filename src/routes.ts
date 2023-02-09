@@ -5,11 +5,13 @@ import { ensureAuthenticateUser } from "./middlewares/ensureAuthenticateUser"
 import { AuthenticateUserController } from "./modules/auth/user/controller/AuthenticateUserController"
 import { UserController } from "./modules/user/controller/UserController"
 import { PostController } from "./modules/post/controller/PostController"
+import { CommentController } from "./modules/comment/controller/CommentController"
 
 const authenticateUserController = new AuthenticateUserController()
 const userController = new UserController()
 const categoryController = new CategoryController()
 const postController = new PostController()
+const commentController = new CommentController()
 const routes = Router()
 
 //User
@@ -33,5 +35,13 @@ routes.put("/post/", ensureAuthenticateUser, postController.handle)
 routes.get("/post/", postController.handle)
 routes.get("/post/:id", postController.handle)
 routes.delete("/post/:id", ensureAuthenticateUser, postController.handle)
+
+//Comment
+routes.post("/comment/", ensureAuthenticateUser, commentController.handle)
+routes.put("/comment/", ensureAuthenticateUser, commentController.handle)
+routes.get("/comment/", commentController.handle)
+routes.get("/comment/:id", commentController.handle)
+routes.delete("/comment/:id", ensureAuthenticateUser, commentController.handle)
+
 
 export { routes }

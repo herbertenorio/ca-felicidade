@@ -662,6 +662,196 @@
                     "style": "simple"
                 }
             ]
+        },
+        "/comment": {
+            "post": {
+                "tags": [
+                    "Comment"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Create comment in the system",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Unique Identifier of comment in the system",
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "description": "Content of the comment",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id",
+                                    "content"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Comment created in the system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Comment"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error creating comment. Message exception"
+                    }
+                }
+            },
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "List comment in the system",
+                "responses": {
+                    "200": {
+                        "description": "Comments in  the system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/definitions/Comment"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Comment"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Update comment in the system",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "description": "Unique Identifier the comment in the system",
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "description": "Content of the comment",
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "id"
+                                ]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Comment updated in the system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Comment"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Error: Unauthorized",
+                        "content": {
+                            "application/json": {}
+                        }
+                    }
+                }
+            }
+        },
+        "/comment/{id}": {
+            "get": {
+                "tags": [
+                    "Comment"
+                ],
+                "summary": "Get comment in the system by id",
+                "responses": {
+                    "200": {
+                        "description": "Comment in the system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/definitions/Comment"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Comment"
+                ],
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ],
+                "summary": "Delete comment in the system by id",
+                "responses": {
+                    "200": {
+                        "description": "Return message deleted comment in the system",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Return Unauthorized message",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "parameters": [
+                {
+                    "name": "id",
+                    "in": "path",
+                    "description": "Unique Identifierof comment in the system",
+                    "required": true,
+                    "schema": {
+                        "type": "string"
+                    },
+                    "style": "simple"
+                }
+            ]
         }
     },
     "definitions": {

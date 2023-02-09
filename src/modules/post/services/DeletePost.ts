@@ -4,6 +4,17 @@ export class DeletePost {
 
     async execute(idPostDelete: string, idUserAuth: string) {
 
+
+        const postExist = await prisma.post.findUnique({
+            where: {
+                id: idPostDelete
+            }
+        })
+
+        if (!postExist) {
+            throw new Error("post not found")
+        }
+
         const userAuth = await prisma.user.findFirst({
             where: {
                 id: idUserAuth
