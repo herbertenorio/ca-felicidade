@@ -1,6 +1,7 @@
-import { prisma, PrismaClient } from "@prisma/client"
+import { prisma } from "../../../../InstanceDB"
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
+import { env } from "process";
 
 interface IAuthenticateUser {
     email: string
@@ -11,7 +12,6 @@ export class AuthenthicateUser {
 
     async execute({ email, password }: IAuthenticateUser) {
 
-        const prisma = new PrismaClient();
         const user = await prisma.user.findFirst({
             where: {
                 email: {
@@ -31,7 +31,7 @@ export class AuthenthicateUser {
             throw new Error("User or password invalid!");
         }
 
-        const token = sign({ email }, "74b0328a08e7d9e213b1ea77ba32198d", {
+        const token = sign({ email }, env.SECRET_KEY as string, {
             subject: user.id,
             expiresIn: "1d"
         });

@@ -1,7 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { verify } from "jsonwebtoken";
-
-
+import { env } from "process";
 
 export async function ensureAuthenticateUser(request: Request, response: Response, next: NextFunction) {
 
@@ -17,7 +16,7 @@ export async function ensureAuthenticateUser(request: Request, response: Respons
 
     try {
 
-        const { sub } = verify(token, "74b0328a08e7d9e213b1ea77ba32198d");
+        const { sub } = verify(token, env.SECRET_KEY as string);
 
         request.id_user_auth = sub as string;
 

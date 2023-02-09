@@ -39,7 +39,7 @@ jobs:
             registry-login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
             registry-username: ${{ secrets.REGISTRY_USERNAME }}
             registry-password: ${{ secrets.REGISTRY_PASSWORD }}
-            secure-environment-variables: DATABASE_URL=${{ secrets.DATABASE_URL }}
+            secure-environment-variables: DATABASE_URL=${{ secrets.DATABASE_URL }} SECRET_KEY=${{ secrets.SECRET_KEY }}
             name: aci-cafelicidade
             location: 'Central India'
             ports: 3333
