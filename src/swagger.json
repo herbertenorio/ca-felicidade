@@ -681,7 +681,7 @@
                             "schema": {
                                 "type": "object",
                                 "properties": {
-                                    "id": {
+                                    "idPost": {
                                         "description": "Unique Identifier of comment in the system",
                                         "type": "string"
                                     },
@@ -691,7 +691,7 @@
                                     }
                                 },
                                 "required": [
-                                    "id",
+                                    "idPost",
                                     "content"
                                 ]
                             }
